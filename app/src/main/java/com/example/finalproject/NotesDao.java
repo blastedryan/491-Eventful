@@ -14,7 +14,7 @@ public interface NotesDao {
     List<Notes> getAll();
 
     @Query("SELECT * FROM notes where id LIKE :id")
-    Notes findByName(String id);
+    Notes findById(String id);
 
     @Query("SELECT COUNT(*) from notes")
     int countNotes();

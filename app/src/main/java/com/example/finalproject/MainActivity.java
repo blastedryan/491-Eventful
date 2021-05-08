@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         b_newNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "newNote!", Toast.LENGTH_LONG).show();//display the text of button1
                 newNote();
             }
         });

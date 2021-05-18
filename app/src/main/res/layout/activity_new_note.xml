@@ -7,7 +7,7 @@
     tools:context=".NewNote">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addNoteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Note"
@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.746" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/NoteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Note:"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.098" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/dateET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.196" />
 
     <EditText
-        android:id="@+id/editTextTime"
+        android:id="@+id/timeET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -58,7 +58,7 @@
         app:layout_constraintVertical_bias="0.307" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/noteET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

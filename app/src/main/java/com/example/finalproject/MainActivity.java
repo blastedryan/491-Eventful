@@ -9,10 +9,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     Button b_newNote;
 
+<<<<<<< Updated upstream
+=======
+    String titles[], dates[], notes[], priorities[];
+    int icon = R.drawable.icon;
+
+    RecyclerView recyclerView;
+
+    //database things; judy
+    private NotesDatabase database;
+    private NotesDao dao;
+    private List<Notes> notesList;
+
+>>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        database = Room.databaseBulder(getApplicationContext(),
+                NotesDatabase.class,
+                "notes").allowMainThreadQueries().build();
+        dao = database.dao();
     }
     public void newNote()
     {

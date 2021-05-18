@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.room.Room;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,13 +48,42 @@ public class MainActivity extends AppCompatActivity {
         // Ced's code
         recyclerView = findViewById(R.id.recyclerView);
 
+        notesList = database.dao().getAll();
+        int count = database.dao().countNotes();
+
+        Notes note;
+
+        List<String> t = new ArrayList<String>();
+        List<String> d = new ArrayList<String>();
+        List<String> n = new ArrayList<String>();
+        List<String> p = new ArrayList<String>();
+
+        if (count > 0) {
+
+            // loop and add each note element.
+            for (int i = 0; i < count; i++) {
+                note = notesList.get(i);
+                t.add(note.getTitle());
+                d.add(note.getDate());
+                n.add(note.getNote());
+                p.add(note.getPriority());
+            }
+        }
+
         // replace getResources() with info from database
+        /*
         titles = getResources().getStringArray(R.array.Title);
         dates = getResources().getStringArray(R.array.Date);
         notes = getResources().getStringArray(R.array.Note);
         priorities = getResources().getStringArray(R.array.Priority);
+        */
 
-        MyAdapter myAdapter = new MyAdapter(this, titles, dates, notes, priorities, icon);
+        MyAdapter myAdapter = new MyAdapter(this, (String[]) t.toArray(),
+                (String[]) d.toArray(),
+                (String[]) n.toArray(),
+                (String[]) p.toArray(),
+                icon);
+
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

@@ -6,6 +6,11 @@
     <string name="date">Date</string>
     <string name="note">Note</string>
     <string name="todo">TODO</string>
+    <string name="confirm_changes">Confirm Changes</string>
+    <string name="set_importance_priority_1_3">Set Importance Priority (1 - 3)</string>
+    <string name="enter_note">Enter Note</string>
+    <string name="enter_date">Enter Date</string>
+    <string name="enter_title">Enter Title</string>
 
     <string-array name="Title">
         <item>Note1</item>

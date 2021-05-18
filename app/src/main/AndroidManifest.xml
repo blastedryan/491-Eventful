@@ -9,6 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
+
+        <activity android:name=".ClickActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Details"/>
+        <activity android:name=".NewNote" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

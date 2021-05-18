@@ -45,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(notificationChannel);
         }
 
+        database = Room.databaseBuilder(getApplicationContext(),
+                NotesDatabase.class,
+                "notes").allowMainThreadQueries().build();
+        dao = database.dao();
+
         // Ced's code
         recyclerView = findViewById(R.id.recyclerView);
 
-        notesList = database.dao().getAll();
         int count = database.dao().countNotes();
 
         Notes note;
@@ -58,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
         List<String> n = new ArrayList<String>();
         List<String> p = new ArrayList<String>();
 
+        //judy: adding a single sample note
+        t.add("Sample Title");
+        d.add("Sample Date");
+        n.add("Sample Note");
+        p.add("Sample Priority");
+
         if (count > 0) {
+            notesList = database.dao().getAll();
 
             // loop and add each note element.
             for (int i = 0; i < count; i++) {
@@ -78,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
         priorities = getResources().getStringArray(R.array.Priority);
         */
 
-        MyAdapter myAdapter = new MyAdapter(this, (String[]) t.toArray(),
-                (String[]) d.toArray(),
-                (String[]) n.toArray(),
-                (String[]) p.toArray(),
+        MyAdapter myAdapter = new MyAdapter(this, t.toArray(new String[t.size()]),
+                d.toArray(new String[d.size()]),
+                n.toArray(new String[n.size()]),
+                p.toArray(new String[p.size()]),
                 icon);
 
         recyclerView.setAdapter(myAdapter);
@@ -100,11 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void newNote()
     {
-        database = Room.databaseBuilder(getApplicationContext(),
-                NotesDatabase.class,
-                "notes").allowMainThreadQueries().build();
-        dao = database.dao();
-
         Intent intent = new Intent(this, NewNote.class);
         startActivity(intent);
     }

@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -24,24 +25,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddNoteActivity extends Activity implements View.OnClickListener {
+public class AddNoteActivity extends AppCompatActivity {
 
     private Button addBtn;
     private EditText titleET, noteET, dateET, priorityET;
     //DBManager dbManager;
-    private Calendar myCalendar = Calendar.getInstance();
+    //private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
     private Date datein;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setTitle("EventFul Add Note");
         setContentView(R.layout.activity_add_note);
+        Intent intent = getIntent();
+        setTitle("EventFul Add Note");
 
         titleET = findViewById(R.id.titleEditText);
-        noteET = findViewById(R.id.noteEditText);
+        /*noteET = findViewById(R.id.noteEditText);
         dateET = findViewById(R.id.dateEditText);
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
@@ -49,7 +50,7 @@ public class AddNoteActivity extends Activity implements View.OnClickListener {
         //dbManager = new DBManager(this);
         //dbManager.open();
 
-        dateET.setOnClickListener(new View.OnClickListener() {
+        /*dateET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -73,11 +74,17 @@ public class AddNoteActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        addBtn.setOnClickListener(this);
+        /*addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addClick(v);
+            }
+        });*/
+
+
     }
 
-    @Override
-    public void onClick(View v) {
+    /*public void addClick(View v) {
         switch (v.getId()) {
             case R.id.addRecord:
                 String title = titleET.getText().toString();
@@ -116,5 +123,5 @@ public class AddNoteActivity extends Activity implements View.OnClickListener {
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
-    }
+    }*/
 }

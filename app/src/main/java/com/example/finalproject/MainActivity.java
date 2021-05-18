@@ -104,14 +104,14 @@ public class MainActivity extends AppCompatActivity {
         b_newNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                newNote();
+                addNote();
             }
         });
     }
 
-    public void newNote()
+    public void addNote()
     {
-        Intent intent = new Intent(this, NewNote.class);
+        Intent intent = new Intent(this, AddNoteActivity.class);
         startActivity(intent);
     }
 }

@@ -3,6 +3,7 @@ package com.example.finalproject;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.ListActivity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -27,7 +28,7 @@ public class AddNoteActivity extends Activity implements View.OnClickListener {
 
     private Button addBtn;
     private EditText titleET, noteET, dateET, priorityET;
-    DBManager dbManager;
+    //DBManager dbManager;
     private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
     private Date datein;
@@ -45,8 +46,8 @@ public class AddNoteActivity extends Activity implements View.OnClickListener {
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
 
-        dbManager = new DBManager(this);
-        dbManager.open();
+        //dbManager = new DBManager(this);
+        //dbManager.open();
 
         dateET.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +87,7 @@ public class AddNoteActivity extends Activity implements View.OnClickListener {
                 String date = sdf.format(datein);
                 String priority = priorityET.getText().toString();
 
-                dbManager.insert(title, note, date, priority);
+                //dbManager.insert(title, note, date, priority);
 
                 String NOTIFICATION_CHANNEL_ID = "10001";//switch for whatever priority chosen
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button b_newNote;
+    Button b_newNote; // Joodi
 
     String titles[], dates[], notes[], priorities[];
     int icon = R.drawable.icon;
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         // Ced's code
         recyclerView = findViewById(R.id.recyclerView);
 
+        // replace getResources() with info from database
         titles = getResources().getStringArray(R.array.Title);
         dates = getResources().getStringArray(R.array.Date);
         notes = getResources().getStringArray(R.array.Note);
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Joodi's code
-        b_newNote = (Button) findViewById(R.id.newNoteButton);//get id of new note button "+"
+        b_newNote = (Button) findViewById(R.id.newNoteButton); //get id of new note button "+"
 
         b_newNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 newNote();
             }
         });
-
-
     }
+
     public void newNote()
     {
         Intent intent = new Intent(this, NewNote.class);

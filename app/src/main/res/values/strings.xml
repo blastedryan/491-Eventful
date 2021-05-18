@@ -21,6 +21,9 @@
         <item>Note6</item>
         <item>Note7</item>
         <item>Note8</item>
+        <item>Note9</item>
+        <item>Note10</item>
+        <item>Note11</item>
     </string-array>
 
     <string-array name="Date">
@@ -32,6 +35,9 @@
         <item>06/06/2021</item>
         <item>07/07/2021</item>
         <item>08/08/2021</item>
+        <item>09/09/2021</item>
+        <item>10/10/2021</item>
+        <item>11/11/2021</item>
     </string-array>
 
     <string-array name="Note">
@@ -43,6 +49,9 @@
         <item>Empty Description 6</item>
         <item>Empty Description 7</item>
         <item>Empty Description 8</item>
+        <item>Empty Description 9</item>
+        <item>Empty Description 10</item>
+        <item>Empty Description 11</item>
     </string-array>
 
     <string-array name="Priority">
@@ -53,6 +62,9 @@
         <item>!!!</item>
         <item>!!!</item>
         <item>!</item>
+        <item>!</item>
+        <item>!!</item>
+        <item>!!!</item>
         <item>!!</item>
     </string-array>
 

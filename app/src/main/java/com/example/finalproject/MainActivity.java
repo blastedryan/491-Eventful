@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,10 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    String titles[], dates[], notes[], priorities[];
-    int icon = R.drawable.icon;
-
-    RecyclerView recyclerView;
     //database things; judy
     private NotesDatabase database;
     private NotesDao dao;

@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button b_newNote;
 
-<<<<<<< Updated upstream
-=======
     String titles[], dates[], notes[], priorities[];
     int icon = R.drawable.icon;
 
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private NotesDao dao;
     private List<Notes> notesList;
 
->>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

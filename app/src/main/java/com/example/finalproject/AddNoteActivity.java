@@ -27,15 +27,13 @@ import java.util.Locale;
 
 public class AddNoteActivity extends AppCompatActivity {
 
-    private Button addBtn;
+    private Button addBtn, dateBtn;
     //private EditText titleET, noteET, dateET, priorityET;
     private EditText titleET, noteET, priorityET;
 
     //DBManager dbManager;
-    //private Calendar myCalendar = Calendar.getInstance();
+    private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
-
-    DatePicker simpleDatePicker;
 
     private Date datein = Calendar.getInstance().getTime();
 
@@ -49,34 +47,16 @@ public class AddNoteActivity extends AppCompatActivity {
         titleET = findViewById(R.id.titleEditText);
 
         noteET = findViewById(R.id.noteEditText);
-        simpleDatePicker = (DatePicker)findViewById(R.id.datePicker); // initiate a date picker
-        simpleDatePicker.setSpinnersShown(false); // set false value for the spinner shown function
 
-        /*dateET = findViewById(R.id.dateEditText);
-<<<<<<< HEAD
-=======
-=======
-        /*noteET = findViewById(R.id.noteEditText);
->>>>>>> parent of ac16c08 (fixed notifications)
-        dateET = findViewById(R.id.dateEditText);
->>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
-=======
-        /*noteET = findViewById(R.id.noteEditText);
-        dateET = findViewById(R.id.dateEditText);
->>>>>>> parent of 303a511 (replacing new note with add note)
-=======
->>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
-=======
-        /*noteET = findViewById(R.id.noteEditText);
-        dateET = findViewById(R.id.dateEditText);
->>>>>>> parent of 303a511 (replacing new note with add note)
+        noteET = findViewById(R.id.noteEditText);
+
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
-
+        dateBtn = findViewById(R.id.dateButton);
         //dbManager = new DBManager(this);
         //dbManager.open();
 
-        /*dateET.setOnClickListener(new View.OnClickListener() {
+        dateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

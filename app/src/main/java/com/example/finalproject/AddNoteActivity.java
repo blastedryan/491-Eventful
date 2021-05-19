@@ -45,6 +45,7 @@ public class AddNoteActivity extends AppCompatActivity {
 <<<<<<< HEAD
     private Date datein;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
@@ -65,6 +66,8 @@ public class AddNoteActivity extends AppCompatActivity {
 >>>>>>> parent of a1f531a (removed auto github labels)
 =======
 >>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
+=======
+>>>>>>> parent of 303a511 (replacing new note with add note)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class AddNoteActivity extends AppCompatActivity {
         setTitle("EventFul Add Note");
 
         titleET = findViewById(R.id.titleEditText);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         noteET = findViewById(R.id.noteEditText);
@@ -94,6 +98,10 @@ public class AddNoteActivity extends AppCompatActivity {
 >>>>>>> parent of 303a511 (replacing new note with add note)
 =======
 >>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
+=======
+        /*noteET = findViewById(R.id.noteEditText);
+        dateET = findViewById(R.id.dateEditText);
+>>>>>>> parent of 303a511 (replacing new note with add note)
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
 

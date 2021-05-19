@@ -113,6 +113,9 @@ public class AddNoteActivity extends AppCompatActivity {
 
                 Notes newNoteObj = new Notes();
 
+                if(title.isEmpty())
+                    title = "New Note " + newNoteObj.getId();
+
                 newNoteObj.setTitle(title);
                 newNoteObj.setDate(date);
                 newNoteObj.setNote(note);

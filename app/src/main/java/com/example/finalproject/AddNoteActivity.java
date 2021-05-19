@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +55,8 @@ public class AddNoteActivity extends AppCompatActivity {
                 NotesDatabase.class,
                 "notes").allowMainThreadQueries().build();
         dao = database.dao();
+
+        int count = database.dao().countNotes();
 
         titleET = findViewById(R.id.titleEditText);
 

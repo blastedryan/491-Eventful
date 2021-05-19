@@ -29,8 +29,9 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private Button addBtn;
     private EditText titleET, noteET, dateET, priorityET;
+    private EditText titleET, noteET, priorityET;
     //DBManager dbManager;
-    //private Calendar myCalendar = Calendar.getInstance();
+    private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
     private Date datein;
     DatePicker simpleDatePicker;
@@ -79,16 +80,18 @@ public class AddNoteActivity extends AppCompatActivity {
         });
 
         /*addBtn.setOnClickListener(new View.OnClickListener() {
+        addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addClick(v);
             }
         });*/
+        });
 
 
     }
 
-    /*public void addClick(View v) {
+    public void addClick(View v) {
         switch (v.getId()) {
             case R.id.addRecord:
                 String title = titleET.getText().toString();
@@ -99,12 +102,19 @@ public class AddNoteActivity extends AppCompatActivity {
                 String priority = priorityET.getText().toString();
 
                 //dbManager.insert(title, note, date, priority);
-
-                String NOTIFICATION_CHANNEL_ID = "10001";//switch for whatever priority chosen
+                String NOTIFICATION_CHANNEL_ID;
+                //switch for whatever priority chosen
+                if(Integer.parseInt(priority) == 3) {//high
+                    NOTIFICATION_CHANNEL_ID = "10001";
+                }else if(Integer.parseInt(priority) == 2) {//norm
+                    NOTIFICATION_CHANNEL_ID = "10002";
+                }else{//low
+                    NOTIFICATION_CHANNEL_ID = "10003";
+                }
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(
                         AddNoteActivity.this, NOTIFICATION_CHANNEL_ID)
-                        .setContentTitle("Title")
-                        .setContentText("Body")
+                        .setContentTitle(title)
+                        .setContentText(note)
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setAutoCancel(true)
                         .setPriority(NotificationCompat.PRIORITY_MAX) //for old versions
@@ -127,5 +137,5 @@ public class AddNoteActivity extends AppCompatActivity {
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
-    }*/
+    }
 }

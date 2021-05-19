@@ -19,10 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.room.Room;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AddNoteActivity extends AppCompatActivity {
@@ -37,12 +39,21 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private Date datein = Calendar.getInstance().getTime();
 
+    /******   judy adding database connection (input)      ******/
+    private NotesDatabase database;
+    private NotesDao dao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
         Intent intent = getIntent();
         setTitle("EventFul Add Note");
+
+        database = Room.databaseBuilder(getApplicationContext(),
+                NotesDatabase.class,
+                "notes").allowMainThreadQueries().build();
+        dao = database.dao();
 
         titleET = findViewById(R.id.titleEditText);
 
@@ -95,11 +106,19 @@ public class AddNoteActivity extends AppCompatActivity {
             case R.id.addRecord:
                 String title = titleET.getText().toString();
                 String note = noteET.getText().toString();
-                String myFormat = "mm/dd/yy" ;
+                String myFormat = "MM/dd/yy" ;
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat , Locale.getDefault ()) ;
                 String date = sdf.format(datein);
                 String priority = priorityET.getText().toString();
 
+                Notes newNoteObj = new Notes();
+
+                newNoteObj.setTitle(title);
+                newNoteObj.setDate(date);
+                newNoteObj.setNote(note);
+                newNoteObj.setPriority(priority);
+
+                database.dao().insert(newNoteObj);
                 //dbManager.insert(title, note, date, priority);
 
                 String NOTIFICATION_CHANNEL_ID = "10001";//switch for whatever priority chosen
@@ -113,6 +132,7 @@ public class AddNoteActivity extends AppCompatActivity {
                         .setChannelId(NOTIFICATION_CHANNEL_ID);//for old versions
 
                 scheduleNotification(builder.build(), delay);
+
 
 
                 Intent main = new Intent(AddNoteActivity.this, ListActivity.class)

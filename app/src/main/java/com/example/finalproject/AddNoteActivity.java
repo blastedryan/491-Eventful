@@ -33,12 +33,11 @@ public class AddNoteActivity extends AppCompatActivity {
     //DBManager dbManager;
     private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
-<<<<<<< HEAD
-    private Date datein;
+
+    //private Date datein;
     DatePicker simpleDatePicker;
-=======
+
     private Date datein = Calendar.getInstance().getTime();
->>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
         titleET = findViewById(R.id.titleEditText);
         noteET = findViewById(R.id.noteEditText);
-<<<<<<< HEAD
+
         /*simpleDatePicker = (DatePicker)findViewById(R.id.datePicker); // initiate a date picker
         simpleDatePicker.setSpinnersShown(false); // set false value for the spinner shown function
 
@@ -143,5 +142,6 @@ public class AddNoteActivity extends AppCompatActivity {
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
-    }
+    }*/
+}
 }

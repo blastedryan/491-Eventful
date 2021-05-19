@@ -33,6 +33,7 @@ public class AddNoteActivity extends AppCompatActivity {
     //private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
     private Date datein;
+    DatePicker simpleDatePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +43,11 @@ public class AddNoteActivity extends AppCompatActivity {
         setTitle("EventFul Add Note");
 
         titleET = findViewById(R.id.titleEditText);
-        /*noteET = findViewById(R.id.noteEditText);
-        dateET = findViewById(R.id.dateEditText);
+        noteET = findViewById(R.id.noteEditText);
+        /*simpleDatePicker = (DatePicker)findViewById(R.id.datePicker); // initiate a date picker
+        simpleDatePicker.setSpinnersShown(false); // set false value for the spinner shown function
+
+        /*dateET = findViewById(R.id.dateEditText);
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
 

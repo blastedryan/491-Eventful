@@ -80,26 +80,17 @@ public class AddNoteActivity extends AppCompatActivity {
             }
         });
 
-        /*addBtn.setOnClickListener(new View.OnClickListener() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         addBtn.setOnClickListener(new View.OnClickListener() {
->>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
-=======
->>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
+
             @Override
             public void onClick(View v) {
                 addClick(v);
             }
-        });*/
+        });
 
     }
 
-
-};
-
-    /*public void addClick(View v) {
+   public void addClick(View v) {
         switch (v.getId()) {
             case R.id.addRecord:
                 String title = titleET.getText().toString();
@@ -130,14 +121,13 @@ public class AddNoteActivity extends AppCompatActivity {
                 break;
         }
     }
-    private void scheduleNotification(Notification notification, long delay) {
-        Intent notificationIntent = new Intent(this, NotificationUtil.class);
-        notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, 1);//unique id
-        notificationIntent.putExtra(NotificationUtil.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        long futureInMillis = SystemClock.elapsedRealtime() + delay;
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    }*/
+    private void scheduleNotification(Notification notification, long delay){
+            Intent notificationIntent = new Intent(this, NotificationUtil.class);
+            notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, 1);//unique id
+            notificationIntent.putExtra(NotificationUtil.NOTIFICATION, notification);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            long futureInMillis = SystemClock.elapsedRealtime() + delay;
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+        }
+    }

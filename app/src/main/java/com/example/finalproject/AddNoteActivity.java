@@ -30,9 +30,12 @@ public class AddNoteActivity extends AppCompatActivity {
     private Button addBtn;
     private EditText titleET, noteET, dateET, priorityET;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private EditText titleET, noteET, priorityET;
 >>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
+=======
+>>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
     //DBManager dbManager;
     //private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
@@ -123,18 +126,24 @@ public class AddNoteActivity extends AppCompatActivity {
 
         /*addBtn.setOnClickListener(new View.OnClickListener() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         addBtn.setOnClickListener(new View.OnClickListener() {
 >>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
+=======
+>>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
             @Override
             public void onClick(View v) {
                 addClick(v);
             }
         });*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         });
 >>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
+=======
+>>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
 
 
     }
@@ -179,8 +188,12 @@ public class AddNoteActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
 <<<<<<< HEAD
+<<<<<<< HEAD
     }*/
 =======
     }
 >>>>>>> parent of a1f531a (removed auto github labels)
+=======
+    }*/
+>>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
 }

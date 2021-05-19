@@ -29,18 +29,26 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private Button addBtn;
     private EditText titleET, noteET, dateET, priorityET;
+<<<<<<< HEAD
+=======
+    private EditText titleET, noteET, priorityET;
+>>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
     //DBManager dbManager;
     //private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Date datein;
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
     private Date datein;
 >>>>>>> parent of a1f531a (removed auto github labels)
     DatePicker simpleDatePicker;
+<<<<<<< HEAD
 =======
     private Date datein = Calendar.getInstance().getTime();
 >>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
@@ -52,6 +60,8 @@ public class AddNoteActivity extends AppCompatActivity {
 >>>>>>> parent of 303a511 (replacing new note with add note)
 =======
 >>>>>>> parent of a1f531a (removed auto github labels)
+=======
+>>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +74,11 @@ public class AddNoteActivity extends AppCompatActivity {
 <<<<<<< HEAD
 <<<<<<< HEAD
         noteET = findViewById(R.id.noteEditText);
-<<<<<<< HEAD
         /*simpleDatePicker = (DatePicker)findViewById(R.id.datePicker); // initiate a date picker
         simpleDatePicker.setSpinnersShown(false); // set false value for the spinner shown function
 
         /*dateET = findViewById(R.id.dateEditText);
+<<<<<<< HEAD
 =======
 =======
         /*noteET = findViewById(R.id.noteEditText);
@@ -79,6 +89,8 @@ public class AddNoteActivity extends AppCompatActivity {
         /*noteET = findViewById(R.id.noteEditText);
         dateET = findViewById(R.id.dateEditText);
 >>>>>>> parent of 303a511 (replacing new note with add note)
+=======
+>>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
 
@@ -110,11 +122,19 @@ public class AddNoteActivity extends AppCompatActivity {
         });
 
         /*addBtn.setOnClickListener(new View.OnClickListener() {
+<<<<<<< HEAD
+=======
+        addBtn.setOnClickListener(new View.OnClickListener() {
+>>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
             @Override
             public void onClick(View v) {
                 addClick(v);
             }
         });*/
+<<<<<<< HEAD
+=======
+        });
+>>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
 
 
     }

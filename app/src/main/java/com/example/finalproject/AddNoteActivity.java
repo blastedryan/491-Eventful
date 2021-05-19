@@ -28,13 +28,17 @@ import java.util.Locale;
 public class AddNoteActivity extends AppCompatActivity {
 
     private Button addBtn;
-    private EditText titleET, noteET, dateET, priorityET;
     private EditText titleET, noteET, priorityET;
+    private Button dateET;
     //DBManager dbManager;
     private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
+<<<<<<< HEAD
     private Date datein;
     DatePicker simpleDatePicker;
+=======
+    private Date datein = Calendar.getInstance().getTime();
+>>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +49,21 @@ public class AddNoteActivity extends AppCompatActivity {
 
         titleET = findViewById(R.id.titleEditText);
         noteET = findViewById(R.id.noteEditText);
+<<<<<<< HEAD
         /*simpleDatePicker = (DatePicker)findViewById(R.id.datePicker); // initiate a date picker
         simpleDatePicker.setSpinnersShown(false); // set false value for the spinner shown function
 
         /*dateET = findViewById(R.id.dateEditText);
+=======
+        dateET = findViewById(R.id.dateEditText);
+>>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
 
         //dbManager = new DBManager(this);
         //dbManager.open();
 
-        /*dateET.setOnClickListener(new View.OnClickListener() {
+        dateET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -79,13 +87,11 @@ public class AddNoteActivity extends AppCompatActivity {
             }
         });
 
-        /*addBtn.setOnClickListener(new View.OnClickListener() {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addClick(v);
             }
-        });*/
         });
 
 

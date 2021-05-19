@@ -34,17 +34,24 @@ public class AddNoteActivity extends AppCompatActivity {
     private long delay = 0;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Date datein;
 <<<<<<< HEAD
+=======
+    private Date datein;
+>>>>>>> parent of a1f531a (removed auto github labels)
     DatePicker simpleDatePicker;
 =======
     private Date datein = Calendar.getInstance().getTime();
 >>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
+<<<<<<< HEAD
 =======
     private Date datein;
 >>>>>>> parent of ac16c08 (fixed notifications)
 =======
 >>>>>>> parent of 303a511 (replacing new note with add note)
+=======
+>>>>>>> parent of a1f531a (removed auto github labels)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,5 +158,9 @@ public class AddNoteActivity extends AppCompatActivity {
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+<<<<<<< HEAD
     }*/
+=======
+    }
+>>>>>>> parent of a1f531a (removed auto github labels)
 }

@@ -28,46 +28,16 @@ import java.util.Locale;
 public class AddNoteActivity extends AppCompatActivity {
 
     private Button addBtn;
-    private EditText titleET, noteET, dateET, priorityET;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+    //private EditText titleET, noteET, dateET, priorityET;
     private EditText titleET, noteET, priorityET;
->>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
-=======
->>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
+
     //DBManager dbManager;
     //private Calendar myCalendar = Calendar.getInstance();
     private long delay = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private Date datein;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
-    private Date datein;
->>>>>>> parent of a1f531a (removed auto github labels)
+
     DatePicker simpleDatePicker;
-<<<<<<< HEAD
-=======
+
     private Date datein = Calendar.getInstance().getTime();
->>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
-<<<<<<< HEAD
-=======
-    private Date datein;
->>>>>>> parent of ac16c08 (fixed notifications)
-=======
->>>>>>> parent of 303a511 (replacing new note with add note)
-=======
->>>>>>> parent of a1f531a (removed auto github labels)
-=======
->>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
-=======
->>>>>>> parent of 303a511 (replacing new note with add note)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +47,9 @@ public class AddNoteActivity extends AppCompatActivity {
         setTitle("EventFul Add Note");
 
         titleET = findViewById(R.id.titleEditText);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         noteET = findViewById(R.id.noteEditText);
-        /*simpleDatePicker = (DatePicker)findViewById(R.id.datePicker); // initiate a date picker
+        simpleDatePicker = (DatePicker)findViewById(R.id.datePicker); // initiate a date picker
         simpleDatePicker.setSpinnersShown(false); // set false value for the spinner shown function
 
         /*dateET = findViewById(R.id.dateEditText);
@@ -145,16 +113,11 @@ public class AddNoteActivity extends AppCompatActivity {
                 addClick(v);
             }
         });*/
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        });
->>>>>>> parent of 11910fa (combine changes from ryan's push with working add view?)
-=======
->>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
-
 
     }
+
+
+};
 
     /*public void addClick(View v) {
         switch (v.getId()) {
@@ -198,10 +161,3 @@ public class AddNoteActivity extends AppCompatActivity {
 <<<<<<< HEAD
 <<<<<<< HEAD
     }*/
-=======
-    }
->>>>>>> parent of a1f531a (removed auto github labels)
-=======
-    }*/
->>>>>>> parent of 15e5e1c (combine changes from ryan's push with working add view?)
-}

@@ -35,6 +35,7 @@ public class AddNoteActivity extends AppCompatActivity {
 <<<<<<< HEAD
 <<<<<<< HEAD
     private Date datein;
+<<<<<<< HEAD
     DatePicker simpleDatePicker;
 =======
     private Date datein = Calendar.getInstance().getTime();
@@ -42,6 +43,8 @@ public class AddNoteActivity extends AppCompatActivity {
 =======
     private Date datein;
 >>>>>>> parent of ac16c08 (fixed notifications)
+=======
+>>>>>>> parent of 303a511 (replacing new note with add note)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class AddNoteActivity extends AppCompatActivity {
         setTitle("EventFul Add Note");
 
         titleET = findViewById(R.id.titleEditText);
+<<<<<<< HEAD
 <<<<<<< HEAD
         noteET = findViewById(R.id.noteEditText);
 <<<<<<< HEAD
@@ -64,6 +68,10 @@ public class AddNoteActivity extends AppCompatActivity {
 >>>>>>> parent of ac16c08 (fixed notifications)
         dateET = findViewById(R.id.dateEditText);
 >>>>>>> ac16c084d96f6c39ee81f0144fef5ab6a43160a5
+=======
+        /*noteET = findViewById(R.id.noteEditText);
+        dateET = findViewById(R.id.dateEditText);
+>>>>>>> parent of 303a511 (replacing new note with add note)
         priorityET = findViewById(R.id.numberEditText);
         addBtn = findViewById(R.id.addRecord);
 

@@ -21,6 +21,7 @@ import androidx.room.Room;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class AddNoteActivity extends AppCompatActivity {
@@ -89,7 +90,7 @@ public class AddNoteActivity extends AppCompatActivity {
            Notes newNoteObj = new Notes();
 
            if (title.isEmpty())
-               title = "New Note " + newNoteObj.getId();
+               title = "New Note "/* + newNoteObj.getId()*/;
 
            newNoteObj.setTitle(title);
            newNoteObj.setDate(date);
@@ -97,6 +98,18 @@ public class AddNoteActivity extends AppCompatActivity {
            newNoteObj.setPriority(priority);
 
            database.dao().insert(newNoteObj);
+
+           //gets id of note just inserted from database
+           List<Notes> DB = database.dao().getAll();
+           int id = -1;
+           for(Notes i:DB){
+               if(i.getTitle().equals(title) &&
+               i.getDate().equals(date) &&
+               i.getNote().equals(note) &&
+               i.getPriority().equals(priority))
+                   id = i.getId();
+           }
+
            String NOTIFICATION_CHANNEL_ID;
            //switch for whatever priority chosen
            try {
@@ -115,13 +128,13 @@ public class AddNoteActivity extends AppCompatActivity {
            NotificationCompat.Builder builder = new NotificationCompat.Builder(
                    AddNoteActivity.this, NOTIFICATION_CHANNEL_ID)
                    .setContentTitle(title)
-                   .setContentText(note)
+                   .setContentText(note/* + Integer.toString(id)*/)
                    .setSmallIcon(R.drawable.ic_launcher_foreground)
                    .setAutoCancel(true)
                    .setPriority(NotificationCompat.PRIORITY_MAX) //for old versions
                    .setChannelId(NOTIFICATION_CHANNEL_ID);//for old versions
 
-           scheduleNotification(builder.build(), delay, newNoteObj.getId());
+           scheduleNotification(builder.build(), delay, id);
 
 
            Intent main = new Intent(AddNoteActivity.this, ListActivity.class)

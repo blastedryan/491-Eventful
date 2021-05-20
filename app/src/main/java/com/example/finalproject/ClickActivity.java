@@ -27,7 +27,7 @@ public class ClickActivity extends AppCompatActivity {
     TextView title, date, note, priority;
     String  s1, s2, s3, s4;
 
-    Button change;
+    Button change, del;
     private long delay = 0;
 
     private NotesDatabase database;
@@ -53,11 +53,14 @@ public class ClickActivity extends AppCompatActivity {
 
         change = findViewById(R.id.editButton);
         change.setOnClickListener(this::editNote);
+
+        del = findViewById(R.id.delButton);
+        del.setOnClickListener(this::delNote);
     }
 
-    private void editNote(View v) {
-        int count = database.dao().countNotes();
 
+
+    private void editNote(View v) {
         if (v.getId() == R.id.editButton) {
 
             String t = title.getText().toString();
@@ -131,6 +134,31 @@ public class ClickActivity extends AppCompatActivity {
         }
     }
 
+    private void delNote(View v) {
+        if (v.getId() == R.id.delButton) {
+
+            Notes oldNoteObj = new Notes();
+
+            //gets id of old note from database
+            List<Notes> DB = database.dao().getAll();
+            int id = -1;
+            for (Notes i : DB) {
+                if (i.getTitle().equals(s1) &&
+                        i.getDate().equals(s2) &&
+                        i.getNote().equals(s3) &&
+                        i.getPriority().equals(s4))
+                    id = i.getId();
+            }
+            oldNoteObj.setId(id);
+            if (id != -1) { database.dao().delete(oldNoteObj); }
+            String NOTIFICATION_CHANNEL_ID = "10003";
+
+            Intent main = new Intent(ClickActivity.this, ListActivity.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(main);
+        }
+    }
+
     private void scheduleNotification(Notification notification, long delay, int id) {
         Intent notificationIntent = new Intent(this, NotificationUtil.class);
         notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, id);//unique id
@@ -140,6 +168,8 @@ public class ClickActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
+
+
 
     private void getData() {
         if (getIntent().hasExtra("Title") &&

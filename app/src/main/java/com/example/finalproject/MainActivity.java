@@ -1,17 +1,16 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import java.util.ArrayList;
@@ -21,7 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     Button b_newNote; // Joodi
 
-    String titles[], dates[], notes[], priorities[];
+    String[] titles;
+    String[] dates;
+    String[] notes;
+    String[] priorities;
     int icon = R.drawable.icon;
 
     RecyclerView recyclerView;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //set up notification channels for 3 priorities
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel notificationChannel = new NotificationChannel("10001", "High Importance", NotificationManager.IMPORTANCE_HIGH);
@@ -45,20 +48,31 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(notificationChannel);
         }
 
+        database = Room.databaseBuilder(getApplicationContext(),
+                NotesDatabase.class,
+                "notes").allowMainThreadQueries().build();
+        dao = database.dao();
+
         // Ced's code
         recyclerView = findViewById(R.id.recyclerView);
 
-        notesList = database.dao().getAll();
         int count = database.dao().countNotes();
 
         Notes note;
 
-        List<String> t = new ArrayList<String>();
-        List<String> d = new ArrayList<String>();
-        List<String> n = new ArrayList<String>();
-        List<String> p = new ArrayList<String>();
+        List<String> t = new ArrayList<>();
+        List<String> d = new ArrayList<>();
+        List<String> n = new ArrayList<>();
+        List<String> p = new ArrayList<>();
+
+        //judy: adding a single sample note
+        t.add("Sample Title");
+        d.add("Sample Date");
+        n.add("Sample Note");
+        p.add("Sample Priority");
 
         if (count > 0) {
+            notesList = database.dao().getAll();
 
             // loop and add each note element.
             for (int i = 0; i < count; i++) {
@@ -78,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
         priorities = getResources().getStringArray(R.array.Priority);
         */
 
-        MyAdapter myAdapter = new MyAdapter(this, (String[]) t.toArray(),
-                (String[]) d.toArray(),
-                (String[]) n.toArray(),
-                (String[]) p.toArray(),
+        MyAdapter myAdapter = new MyAdapter(this, t.toArray(new String[t.size()]),
+                d.toArray(new String[d.size()]),
+                n.toArray(new String[n.size()]),
+                p.toArray(new String[p.size()]),
                 icon);
 
         recyclerView.setAdapter(myAdapter);
@@ -90,22 +104,12 @@ public class MainActivity extends AppCompatActivity {
         // Joodi's code
         b_newNote = (Button) findViewById(R.id.newNoteButton); //get id of new note button "+"
 
-        b_newNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                newNote();
-            }
-        });
+        b_newNote.setOnClickListener(view -> addNote());
     }
 
-    public void newNote()
+    public void addNote()
     {
-        database = Room.databaseBuilder(getApplicationContext(),
-                NotesDatabase.class,
-                "notes").allowMainThreadQueries().build();
-        dao = database.dao();
-
-        Intent intent = new Intent(this, NewNote.class);
+        Intent intent = new Intent(this, AddNoteActivity.class);
         startActivity(intent);
     }
 }

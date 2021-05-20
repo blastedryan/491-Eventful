@@ -13,7 +13,7 @@
         <activity android:name=".ClickActivity"
             android:parentActivityName=".MainActivity"
             android:label="Details"/>
-        <activity android:name=".NewNote" />
+        <activity android:name=".AddNoteActivity" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

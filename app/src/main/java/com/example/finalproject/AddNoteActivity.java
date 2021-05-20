@@ -55,37 +55,25 @@ public class AddNoteActivity extends AppCompatActivity {
         addBtn = findViewById(R.id.addRecord);
         dateBtn = findViewById(R.id.dateButton);
 
-        dateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        myCalendar.set(Calendar.YEAR, year);
-                        myCalendar.set(Calendar.MONTH, monthOfYear);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        datein = myCalendar.getTime();
-                        Date currentTime = Calendar.getInstance().getTime();
-                        delay = datein.getTime() - currentTime.getTime();
+        dateBtn.setOnClickListener(v -> {
+            DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                datein = myCalendar.getTime();
+                Date currentTime = Calendar.getInstance().getTime();
+                delay = datein.getTime() - currentTime.getTime();
 
-                    }
-                };
-                new DatePickerDialog(
-                        AddNoteActivity.this, date,
-                        myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)
-                ).show();
-            }
+            };
+            new DatePickerDialog(
+                    AddNoteActivity.this, date,
+                    myCalendar.get(Calendar.YEAR),
+                    myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show();
         });
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                addClick(v);
-            }
-        });
+        addBtn.setOnClickListener(this::addClick);
 
     }
 
@@ -111,13 +99,19 @@ public class AddNoteActivity extends AppCompatActivity {
            database.dao().insert(newNoteObj);
            String NOTIFICATION_CHANNEL_ID;
            //switch for whatever priority chosen
-           if (Integer.parseInt(priority) == 3) {//high
-               NOTIFICATION_CHANNEL_ID = "10001";
-           } else if (Integer.parseInt(priority) == 2) {//norm
-               NOTIFICATION_CHANNEL_ID = "10002";
-           } else {//low
+           try {
+               int intpriority = Integer.parseInt(priority);
+               if (intpriority == 3) {//high
+                   NOTIFICATION_CHANNEL_ID = "10001";
+               } else if (intpriority == 2) {//norm
+                   NOTIFICATION_CHANNEL_ID = "10002";
+               } else {//low
+                   NOTIFICATION_CHANNEL_ID = "10003";
+               }
+           } catch (NumberFormatException e) {
                NOTIFICATION_CHANNEL_ID = "10003";
            }
+
            NotificationCompat.Builder builder = new NotificationCompat.Builder(
                    AddNoteActivity.this, NOTIFICATION_CHANNEL_ID)
                    .setContentTitle(title)
@@ -127,7 +121,7 @@ public class AddNoteActivity extends AppCompatActivity {
                    .setPriority(NotificationCompat.PRIORITY_MAX) //for old versions
                    .setChannelId(NOTIFICATION_CHANNEL_ID);//for old versions
 
-           scheduleNotification(builder.build(), delay);
+           scheduleNotification(builder.build(), delay, newNoteObj.getId());
 
 
            Intent main = new Intent(AddNoteActivity.this, ListActivity.class)
@@ -135,9 +129,9 @@ public class AddNoteActivity extends AppCompatActivity {
            startActivity(main);
        }
     }
-    private void scheduleNotification(Notification notification, long delay) {
+    private void scheduleNotification(Notification notification, long delay, int id) {
         Intent notificationIntent = new Intent(this, NotificationUtil.class);
-        notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, 1);//unique id
+        notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, id);//unique id
         notificationIntent.putExtra(NotificationUtil.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         long futureInMillis = SystemClock.elapsedRealtime() + delay;

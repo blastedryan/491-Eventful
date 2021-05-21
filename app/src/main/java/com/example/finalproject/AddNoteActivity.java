@@ -146,7 +146,7 @@ public class AddNoteActivity extends AppCompatActivity {
         Intent notificationIntent = new Intent(this, NotificationUtil.class);
         notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, id);//unique id
         notificationIntent.putExtra(NotificationUtil.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);

@@ -1,10 +1,7 @@
 package com.example.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.room.Room;
-
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
 import android.app.ListActivity;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -14,24 +11,31 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.room.Room;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class ClickActivity extends AppCompatActivity {
 
-    TextView title, date, note, priority;
+    TextView title, note, priority;
+    Button date;
     String  s1, s2, s3, s4;
 
     Button change, del;
-    private long delay = 0;
 
     private NotesDatabase database;
     private NotesDao dao;
+
+    private Calendar myCalendar = Calendar.getInstance();
+    private long delay = 0;
+    private Date datein = Calendar.getInstance().getTime();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class ClickActivity extends AppCompatActivity {
         setContentView(R.layout.activity_click);
 
         title = findViewById(R.id.titleText);
-        date = findViewById(R.id.dateText);
+        date = findViewById(R.id.dateButton);
         note = findViewById(R.id.noteText);
         priority = findViewById(R.id.priorityText);
 
@@ -47,6 +51,24 @@ public class ClickActivity extends AppCompatActivity {
                 NotesDatabase.class,
                 "notes").allowMainThreadQueries().build();
         dao = database.dao();
+
+        date.setOnClickListener(v -> {
+            DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                datein = myCalendar.getTime();
+                Date currentTime = Calendar.getInstance().getTime();
+                delay = datein.getTime() - currentTime.getTime();
+
+            };
+            new DatePickerDialog(
+                    ClickActivity.this, date,
+                    myCalendar.get(Calendar.YEAR),
+                    myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show();
+        });
 
         getData();
         setData();
@@ -151,7 +173,18 @@ public class ClickActivity extends AppCompatActivity {
             }
             oldNoteObj.setId(id);
             if (id != -1) { database.dao().delete(oldNoteObj); }
-            String NOTIFICATION_CHANNEL_ID = "10003";
+
+            //cancels notification
+            Intent intent = new Intent(this, NotificationUtil.class);
+            AlarmManager alarmManager =
+                    (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            PendingIntent pendingIntent =
+                    PendingIntent.getBroadcast(this, id, intent,
+                            PendingIntent.FLAG_NO_CREATE);
+            if (pendingIntent != null && alarmManager != null) {
+                alarmManager.cancel(pendingIntent);
+            }
+
 
             Intent main = new Intent(ClickActivity.this, ListActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -163,7 +196,7 @@ public class ClickActivity extends AppCompatActivity {
         Intent notificationIntent = new Intent(this, NotificationUtil.class);
         notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, id);//unique id
         notificationIntent.putExtra(NotificationUtil.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);

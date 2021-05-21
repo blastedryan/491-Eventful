@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         //judy: adding a single sample note
         t.add("Sample Title");
         d.add("Sample Date");
-        n.add("Sample Note: recreated every refresh of the Home Page!");
+        n.add("Sample Note");
         p.add("Sample Priority");
 
         if (count > 0) {

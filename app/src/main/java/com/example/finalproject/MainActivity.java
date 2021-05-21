@@ -19,16 +19,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Button b_newNote; // Joodi
-
-    String[] titles;
-    String[] dates;
-    String[] notes;
-    String[] priorities;
     int icon = R.drawable.icon;
-
     RecyclerView recyclerView;
 
-    //database things; judy
+    // database things; judy
     private NotesDatabase database;
     private NotesDao dao;
     private List<Notes> notesList;
@@ -37,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //set up notification channels for 3 priorities
+
+        // set up notification channels for 3 priorities
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel notificationChannel = new NotificationChannel("10001", "High Importance", NotificationManager.IMPORTANCE_HIGH);
@@ -53,11 +48,10 @@ public class MainActivity extends AppCompatActivity {
                 "notes").allowMainThreadQueries().build();
         dao = database.dao();
 
-        // Ced's code
+        // Ced's code for creation of actual "note" made up of different attributes collected from database
         recyclerView = findViewById(R.id.recyclerView);
 
         int count = database.dao().countNotes();
-
         Notes note;
 
         List<String> t = new ArrayList<>();
@@ -84,14 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // replace getResources() with info from database
-        /*
-        titles = getResources().getStringArray(R.array.Title);
-        dates = getResources().getStringArray(R.array.Date);
-        notes = getResources().getStringArray(R.array.Note);
-        priorities = getResources().getStringArray(R.array.Priority);
-        */
-
+        // displays note cards inside of a recycler view
         MyAdapter myAdapter = new MyAdapter(this, t.toArray(new String[t.size()]),
                 d.toArray(new String[d.size()]),
                 n.toArray(new String[n.size()]),
@@ -103,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Joodi's code
         b_newNote = (Button) findViewById(R.id.newNoteButton); //get id of new note button "+"
-
         b_newNote.setOnClickListener(view -> addNote());
     }
 

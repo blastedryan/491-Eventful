@@ -73,7 +73,7 @@ public class ClickActivity extends AppCompatActivity {
             if (t.isEmpty())
                 t = "New Note "/* + newNoteObj.getId()*/;
 
-            //gets id of old note from database
+            // gets id of old note from database
             List<Notes> DB = database.dao().getAll();
             int id = -1;
             for (Notes i : DB) {
@@ -92,7 +92,7 @@ public class ClickActivity extends AppCompatActivity {
             newNoteObj.setPriority(p);
             database.dao().insert(newNoteObj);
 
-            //gets id of note just inserted from database
+            // gets id of note just inserted from database
             List<Notes> NewDB = database.dao().getAll();
             id = -1;
             for (Notes i : NewDB) {
@@ -102,8 +102,9 @@ public class ClickActivity extends AppCompatActivity {
                         i.getPriority().equals(p))
                     id = i.getId();
             }
+
             String NOTIFICATION_CHANNEL_ID;
-            //switch for whatever priority chosen
+            // switch for whatever priority chosen
             try {
                 int intpriority = Integer.parseInt(p);
                 if (intpriority == 3) {//high
@@ -116,6 +117,7 @@ public class ClickActivity extends AppCompatActivity {
             } catch (NumberFormatException e) {
                 NOTIFICATION_CHANNEL_ID = "10003";
             }
+
             NotificationCompat.Builder builder = new NotificationCompat.Builder(
                     ClickActivity.this, NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(t)
@@ -168,8 +170,6 @@ public class ClickActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
-
-
 
     private void getData() {
         if (getIntent().hasExtra("Title") &&

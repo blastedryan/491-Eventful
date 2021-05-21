@@ -40,15 +40,12 @@ public class AddNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
-        Intent intent = getIntent();
         setTitle("EventFul Add Note");
 
         database = Room.databaseBuilder(getApplicationContext(),
                 NotesDatabase.class,
                 "notes").allowMainThreadQueries().build();
         dao = database.dao();
-
-        int count = database.dao().countNotes();
 
         titleET = findViewById(R.id.titleEditText);
         noteET = findViewById(R.id.noteEditText);
@@ -90,7 +87,7 @@ public class AddNoteActivity extends AppCompatActivity {
            Notes newNoteObj = new Notes();
 
            if (title.isEmpty())
-               title = "New Note "/* + newNoteObj.getId()*/;
+               title = "New Note ";
 
            newNoteObj.setTitle(title);
            newNoteObj.setDate(date);
@@ -99,7 +96,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
            database.dao().insert(newNoteObj);
 
-           //gets id of note just inserted from database
+           // gets id of note just inserted from database
            List<Notes> DB = database.dao().getAll();
            int id = -1;
            for(Notes i:DB){
@@ -111,7 +108,7 @@ public class AddNoteActivity extends AppCompatActivity {
            }
 
            String NOTIFICATION_CHANNEL_ID;
-           //switch for whatever priority chosen
+           // switch for whatever priority chosen
            try {
                int intpriority = Integer.parseInt(priority);
                if (intpriority == 3) {//high
@@ -131,8 +128,8 @@ public class AddNoteActivity extends AppCompatActivity {
                    .setContentText(note/* + Integer.toString(id)*/)
                    .setSmallIcon(R.drawable.ic_launcher_foreground)
                    .setAutoCancel(true)
-                   .setPriority(NotificationCompat.PRIORITY_MAX) //for old versions
-                   .setChannelId(NOTIFICATION_CHANNEL_ID);//for old versions
+                   .setPriority(NotificationCompat.PRIORITY_MAX) // for old versions
+                   .setChannelId(NOTIFICATION_CHANNEL_ID);// for old versions
 
            scheduleNotification(builder.build(), delay, id);
 

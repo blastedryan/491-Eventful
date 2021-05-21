@@ -11,6 +11,7 @@
     <string name="enter_note">Enter Note</string>
     <string name="enter_date">Enter Date</string>
     <string name="enter_title">Enter Title</string>
+    <string name="delete_note">Delete Note</string>
 
     <string-array name="Title">
         <item>Note1</item>

@@ -20,10 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button b_newNote; // Joodi
 
-    String[] titles;
-    String[] dates;
-    String[] notes;
-    String[] priorities;
     int icon = R.drawable.icon;
 
     RecyclerView recyclerView;
@@ -83,14 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 p.add(note.getPriority());
             }
         }
-
-        // replace getResources() with info from database
-        /*
-        titles = getResources().getStringArray(R.array.Title);
-        dates = getResources().getStringArray(R.array.Date);
-        notes = getResources().getStringArray(R.array.Note);
-        priorities = getResources().getStringArray(R.array.Priority);
-        */
 
         MyAdapter myAdapter = new MyAdapter(this, t.toArray(new String[t.size()]),
                 d.toArray(new String[d.size()]),

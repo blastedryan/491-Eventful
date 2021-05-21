@@ -63,6 +63,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 delay = datein.getTime() - currentTime.getTime();
 
             };
+
             new DatePickerDialog(
                     AddNoteActivity.this, date,
                     myCalendar.get(Calendar.YEAR),
@@ -139,6 +140,7 @@ public class AddNoteActivity extends AppCompatActivity {
            startActivity(main);
        }
     }
+
     private void scheduleNotification(Notification notification, long delay, int id) {
         Intent notificationIntent = new Intent(this, NotificationUtil.class);
         notificationIntent.putExtra(NotificationUtil.NOTIFICATION_ID, id);//unique id

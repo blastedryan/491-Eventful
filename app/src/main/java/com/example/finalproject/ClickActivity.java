@@ -22,12 +22,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+// Note Card Edit Page with pre-filled info
 public class ClickActivity extends AppCompatActivity {
 
+    // note properties
     TextView title, note, priority;
-    Button date;
     String  s1, s2, s3, s4;
 
+    Button date; // implements a date picker
+
+    // for confirming changes to note or deleting note
     Button change, del;
 
     private NotesDatabase database;
@@ -62,6 +66,7 @@ public class ClickActivity extends AppCompatActivity {
                 delay = datein.getTime() - currentTime.getTime();
 
             };
+
             new DatePickerDialog(
                     ClickActivity.this, date,
                     myCalendar.get(Calendar.YEAR),
@@ -93,7 +98,7 @@ public class ClickActivity extends AppCompatActivity {
             Notes oldNoteObj = new Notes();
 
             if (t.isEmpty())
-                t = "New Note "/* + newNoteObj.getId()*/;
+                t = "New Note ";
 
             // gets id of old note from database
             List<Notes> DB = database.dao().getAll();
@@ -105,6 +110,7 @@ public class ClickActivity extends AppCompatActivity {
                         i.getPriority().equals(s4))
                     id = i.getId();
             }
+
             oldNoteObj.setId(id);
             if (id != -1) { database.dao().delete(oldNoteObj); }
 
@@ -146,11 +152,10 @@ public class ClickActivity extends AppCompatActivity {
                     .setContentText(n/* + Integer.toString(id)*/)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
                     .setAutoCancel(true)
-                    .setPriority(NotificationCompat.PRIORITY_MAX) //for old versions
-                    .setChannelId(NOTIFICATION_CHANNEL_ID);//for old versions
+                    .setPriority(NotificationCompat.PRIORITY_MAX) // for old versions
+                    .setChannelId(NOTIFICATION_CHANNEL_ID); // for old versions
 
             scheduleNotification(builder.build(), delay, id);
-
 
             Intent main = new Intent(ClickActivity.this, ListActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -163,7 +168,7 @@ public class ClickActivity extends AppCompatActivity {
 
             Notes oldNoteObj = new Notes();
 
-            //gets id of old note from database
+            // gets id of old note from database
             List<Notes> DB = database.dao().getAll();
             int id = -1;
             for (Notes i : DB) {
@@ -173,10 +178,11 @@ public class ClickActivity extends AppCompatActivity {
                         i.getPriority().equals(s4))
                     id = i.getId();
             }
+
             oldNoteObj.setId(id);
             if (id != -1) { database.dao().delete(oldNoteObj); }
 
-            //cancels notification
+            // cancels notification
             Intent intent = new Intent(this, NotificationUtil.class);
             AlarmManager alarmManager =
                     (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -186,7 +192,6 @@ public class ClickActivity extends AppCompatActivity {
             if (pendingIntent != null && alarmManager != null) {
                 alarmManager.cancel(pendingIntent);
             }
-
 
             Intent main = new Intent(ClickActivity.this, ListActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -204,6 +209,7 @@ public class ClickActivity extends AppCompatActivity {
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
 
+    // gets note card info for fill in
     private void getData() {
         if (getIntent().hasExtra("Title") &&
                 getIntent().hasExtra("Date") &&
@@ -220,6 +226,7 @@ public class ClickActivity extends AppCompatActivity {
         }
     }
 
+    // fills note card info for editing
     private void setData() {
         title.setText(s1);
         date.setText(s2);
